@@ -1,6 +1,13 @@
 name: AlexUtilities
 version: 4.0
-main: com.gitlab.cubealex.main.Main
+main: com.github.cubealex.main.Main
 author: CubeAlex
-website: https://www.gitlab.com/CubeAlex/alexutilities
+website: https://www.github.com/GGAlex2578/AlexUtilities
+
+commands:
+  home:
+    description: Teleportiert dich zu deinem Home Point
+  sethome:
+    description: Setzt deinen Home Point
+
 
