@@ -12,11 +12,11 @@ public class Main extends JavaPlugin {
 
         plugin = this;
 
-        this.getLogger().info(Utils.PREFIX + "§aDas Plugin wird gestartet!");
+        this.getLogger().info(Utils.PREFIX + "Â§aDas Plugin wird gestartet!");
 
         try {
 
-            this.getLogger().info(Utils.PREFIX + "§aDas Plugin wird geladen...");
+            this.getLogger().info(Utils.PREFIX + "Â§aDas Plugin wird geladen...");
 
             //Try register all Commands and Listener
             register();
@@ -30,14 +30,14 @@ public class Main extends JavaPlugin {
 
         }
 
-        this.getLogger().info(Utils.PREFIX + "§aDas Plugin wurde geladen!");
+        this.getLogger().info(Utils.PREFIX + "Â§aDas Plugin wurde geladen!");
 
     }
 
     @Override
     public void onDisable() {
 
-        this.getLogger().info(Utils.PREFIX + "§4Das Plugin wurde gestoppt!");
+        this.getLogger().info(Utils.PREFIX + "Â§4Das Plugin wurde gestoppt!");
 
     }
 

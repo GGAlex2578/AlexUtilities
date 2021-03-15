@@ -4,8 +4,8 @@ import org.bukkit.Color;
 
 public class Utils {
 
-    public static final String PREFIX = "§6AlexUtilities §b>> §r";
+    public static final String PREFIX = "Â§6AlexUtilities Â§b>> Â§r";
 
-    public static final String NOPLAYER = PREFIX + "§4Nur Spieler können diesen Command benutzen!";
+    public static final String NOPLAYER = PREFIX + "Â§4Nur Spieler kÃ¶nnen diesen Command benutzen!";
 
 }
