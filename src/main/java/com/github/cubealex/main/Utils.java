@@ -1,11 +1,17 @@
 package com.github.cubealex.main;
 
-import org.bukkit.Color;
+import org.bukkit.configuration.file.FileConfiguration;
 
 public class Utils {
 
-    public static final String PREFIX = "§6AlexUtilities §b>> §r";
+    private static FileConfiguration config = Main.getPlugin().getConfig();
 
-    public static final String NOPLAYER = PREFIX + "§4Nur Spieler können diesen Command benutzen!";
+    public static String prefix = config.getString("Prefix");
+
+    public static String noPlayer = prefix + config.getString("NoPlayer");
+
+    public static String noArgs = prefix + config.getString("NoArgs");
+
+    public static String success = prefix + config.getString("Success");
 
 }

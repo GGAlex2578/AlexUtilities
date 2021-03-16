@@ -1,6 +1,7 @@
 package com.github.cubealex.main;
 
 import com.github.cubealex.commands.HomeCommand;
+import com.github.cubealex.configs.HomesYML;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -12,11 +13,11 @@ public class Main extends JavaPlugin {
 
         plugin = this;
 
-        this.getLogger().info(Utils.PREFIX + "§aDas Plugin wird gestartet!");
+        this.getLogger().info(Utils.prefix + "§aDas Plugin wird gestartet!");
 
         try {
 
-            this.getLogger().info(Utils.PREFIX + "§aDas Plugin wird geladen...");
+            this.getLogger().info(Utils.prefix + "§aDas Plugin wird geladen...");
 
             //Try register all Commands and Listener
             register();
@@ -30,14 +31,17 @@ public class Main extends JavaPlugin {
 
         }
 
-        this.getLogger().info(Utils.PREFIX + "§aDas Plugin wurde geladen!");
+        //Load all Configs
+        HomesYML.createConfig();
+
+        this.getLogger().info(Utils.prefix + "§aDas Plugin wurde geladen!");
 
     }
 
     @Override
     public void onDisable() {
 
-        this.getLogger().info(Utils.PREFIX + "§4Das Plugin wurde gestoppt!");
+        this.getLogger().info(Utils.prefix + "§4Das Plugin wurde gestoppt!");
 
     }
 
