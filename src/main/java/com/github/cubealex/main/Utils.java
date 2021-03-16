@@ -14,4 +14,9 @@ public class Utils {
 
     public static String success = prefix + config.getString("Success");
 
+    public static String usage = prefix + config.getString("Usage");
+
+    public static String joinMessage = prefix + config.getString("JoinMessage");
+    public static String quitMessage = prefix + config.getString("QuitMessage");
+
 }

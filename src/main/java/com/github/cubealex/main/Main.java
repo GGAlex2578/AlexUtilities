@@ -2,6 +2,8 @@ package com.github.cubealex.main;
 
 import com.github.cubealex.commands.HomeCommand;
 import com.github.cubealex.configs.HomesYML;
+import com.github.cubealex.listener.JoinListener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -47,8 +49,14 @@ public class Main extends JavaPlugin {
 
     private void register() {
 
+        //Registers Commands
         this.getCommand("home").setExecutor(new HomeCommand());
         this.getCommand("sethome").setExecutor(new HomeCommand());
+
+        //Registers Listeners
+        PluginManager pm = this.getServer().getPluginManager();
+
+        pm.registerEvents(new JoinListener(), this);
 
     }
 

@@ -44,7 +44,7 @@ public class HomeCommand implements CommandExecutor {
 
                 if (homesYML.contains("Homes." + player.getName())) {
 
-                    player.sendMessage(Utils.prefix + "§4Bitte benutze /sethome confirm");
+                    player.sendMessage(Utils.usage + cmd.getName() + " confirm");
 
                     return false;
 
@@ -59,20 +59,9 @@ public class HomeCommand implements CommandExecutor {
             //Checks if the Command is /home
             }else if (args.length <= 0 && cmd.getName().equalsIgnoreCase("home")) {
 
-                //Retrieves the Players Coordinates from homes.yml
-                double x = homesYML.getDouble("Homes." + player.getName() + ".X");
-                double y = homesYML.getDouble("Homes." + player.getName() + ".Y");
-                double z = homesYML.getDouble("Homes." + player.getName() + ".Z");
 
-                //Retrieves the Players Rotation from homes.yml
-                float yaw = (float) homesYML.getDouble("Homes." + player.getName() + ".Yaw");
-                float pitch = (float) homesYML.getDouble("Homes." + player.getName() + ".Pitch");
-
-                //Retrieves the Players World from homes.yml
-                World world = Main.getPlugin().getServer().getWorld(homesYML.getString("Homes." + player.getName() + ".World"));
-
-                //Teleports the Player
-                player.teleportAsync(new Location(world, x ,y ,z, yaw, pitch));
+                //Teleports the Player to his Home and sends a Message
+                teleportPlayer(player);
 
                 player.sendMessage(Utils.success);
 
@@ -120,6 +109,25 @@ public class HomeCommand implements CommandExecutor {
             e.printStackTrace();
 
         }
+
+    }
+
+    private void teleportPlayer(Player player) {
+
+        //Retrieves the Players Coordinates from homes.yml
+        double x = homesYML.getDouble("Homes." + player.getName() + ".X");
+        double y = homesYML.getDouble("Homes." + player.getName() + ".Y");
+        double z = homesYML.getDouble("Homes." + player.getName() + ".Z");
+
+        //Retrieves the Players Rotation from homes.yml
+        float yaw = (float) homesYML.getDouble("Homes." + player.getName() + ".Yaw");
+        float pitch = (float) homesYML.getDouble("Homes." + player.getName() + ".Pitch");
+
+        //Retrieves the Players World from homes.yml
+        World world = Main.getPlugin().getServer().getWorld(homesYML.getString("Homes." + player.getName() + ".World"));
+
+        //Teleports the Player
+        player.teleportAsync(new Location(world, x ,y ,z, yaw, pitch));
 
     }
 
