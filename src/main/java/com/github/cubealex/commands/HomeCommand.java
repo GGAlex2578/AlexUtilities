@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class HomeCommand implements CommandExecutor {
 
-    private FileConfiguration homesYML = HomesYML.getConfig();
+    private FileConfiguration config = HomesYML.getConfig();
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
@@ -27,11 +27,11 @@ public class HomeCommand implements CommandExecutor {
             Player player = ((Player) sender).getPlayer();
 
             //Checks if the Command is /sethome and if the Player has a Home
-            if (args.length == 1 && cmd.getName().equalsIgnoreCase("sethome") && homesYML.contains("Homes." + player.getName())) {
+            if (args.length == 1 && cmd.getName().equalsIgnoreCase("sethome") && config.contains("Homes." + player.getName())) {
 
                 if (args[0].equalsIgnoreCase("confirm")) {
 
-                    saveCoordinates(player);
+                    saveCoordinates(player, config);
 
                     player.sendMessage(Utils.success);
 
@@ -42,7 +42,7 @@ public class HomeCommand implements CommandExecutor {
                 //Checks if the Command is /sethome
             }else if (args.length <= 0 && cmd.getName().equalsIgnoreCase("sethome")) {
 
-                if (homesYML.contains("Homes." + player.getName())) {
+                if (config.contains("Homes." + player.getName())) {
 
                     player.sendMessage(Utils.usage + cmd.getName() + " confirm");
 
@@ -50,7 +50,7 @@ public class HomeCommand implements CommandExecutor {
 
                 }
 
-                saveCoordinates(player);
+                saveCoordinates(player, config);
 
                 player.sendMessage(Utils.success);
 
@@ -61,7 +61,7 @@ public class HomeCommand implements CommandExecutor {
 
 
                 //Teleports the Player to his Home and sends a Message
-                teleportPlayer(player);
+                teleportPlayer(player, config);
 
                 player.sendMessage(Utils.success);
 
@@ -85,24 +85,24 @@ public class HomeCommand implements CommandExecutor {
 
     }
 
-    private void saveCoordinates(Player player) {
+    private void saveCoordinates(Player player, FileConfiguration config) {
 
         //Saves the Players Coordinates to homes.yml
-        homesYML.set("Homes." + player.getName() + ".X", player.getLocation().getX());
-        homesYML.set("Homes." + player.getName() + ".Y", player.getLocation().getY());
-        homesYML.set("Homes." + player.getName() + ".Z", player.getLocation().getZ());
+        config.set("Homes." + player.getName() + ".X", player.getLocation().getX());
+        config.set("Homes." + player.getName() + ".Y", player.getLocation().getY());
+        config.set("Homes." + player.getName() + ".Z", player.getLocation().getZ());
 
         //Saves the Players Rotation to homes.yml
-        homesYML.set("Homes." + player.getName() + ".Yaw", player.getLocation().getYaw());
-        homesYML.set("Homes." + player.getName() + ".Pitch", player.getLocation().getPitch());
+        config.set("Homes." + player.getName() + ".Yaw", player.getLocation().getYaw());
+        config.set("Homes." + player.getName() + ".Pitch", player.getLocation().getPitch());
 
         //Saves the Players World to homes.yml
-        homesYML.set("Homes." + player.getName() + ".World", player.getLocation().getWorld().getName());
+        config.set("Homes." + player.getName() + ".World", player.getLocation().getWorld().getName());
 
         //Save the Changes
         try {
 
-            homesYML.save(HomesYML.getConfigFile());
+            config.save(HomesYML.getConfigFile());
 
         } catch (IOException e) {
 
@@ -112,19 +112,19 @@ public class HomeCommand implements CommandExecutor {
 
     }
 
-    private void teleportPlayer(Player player) {
+    private void teleportPlayer(Player player, FileConfiguration config) {
 
         //Retrieves the Players Coordinates from homes.yml
-        double x = homesYML.getDouble("Homes." + player.getName() + ".X");
-        double y = homesYML.getDouble("Homes." + player.getName() + ".Y");
-        double z = homesYML.getDouble("Homes." + player.getName() + ".Z");
+        double x = config.getDouble("Homes." + player.getName() + ".X");
+        double y = config.getDouble("Homes." + player.getName() + ".Y");
+        double z = config.getDouble("Homes." + player.getName() + ".Z");
 
         //Retrieves the Players Rotation from homes.yml
-        float yaw = (float) homesYML.getDouble("Homes." + player.getName() + ".Yaw");
-        float pitch = (float) homesYML.getDouble("Homes." + player.getName() + ".Pitch");
+        float yaw = (float) config.getDouble("Homes." + player.getName() + ".Yaw");
+        float pitch = (float) config.getDouble("Homes." + player.getName() + ".Pitch");
 
         //Retrieves the Players World from homes.yml
-        World world = Main.getPlugin().getServer().getWorld(homesYML.getString("Homes." + player.getName() + ".World"));
+        World world = Main.getPlugin().getServer().getWorld(config.getString("Homes." + player.getName() + ".World"));
 
         //Teleports the Player
         player.teleportAsync(new Location(world, x ,y ,z, yaw, pitch));

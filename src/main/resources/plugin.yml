@@ -9,5 +9,7 @@ commands:
     description: Teleportiert dich zu deinem Home Point
   sethome:
     description: Setzt deinen Home Point
+  coords:
+    description: Speichert/Loescht Koordinaten und teleportiert dich auch zu ihnen
 
 

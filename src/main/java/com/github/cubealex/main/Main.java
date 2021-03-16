@@ -1,8 +1,11 @@
 package com.github.cubealex.main;
 
+import com.github.cubealex.commands.CoordsCommand;
 import com.github.cubealex.commands.HomeCommand;
+import com.github.cubealex.configs.CoordsYML;
 import com.github.cubealex.configs.HomesYML;
 import com.github.cubealex.listener.JoinListener;
+import com.github.cubealex.tabcompleter.CoordsTabCompleter;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,14 +30,15 @@ public class Main extends JavaPlugin {
             //Initialize Config
             this.saveDefaultConfig();
 
+            //Load all Configs
+            HomesYML.createConfig();
+            CoordsYML.createConfig();
+
         }catch (Exception e) {
 
             e.printStackTrace();
 
         }
-
-        //Load all Configs
-        HomesYML.createConfig();
 
         this.getLogger().info(Utils.prefix + "§aDas Plugin wurde geladen!");
 
@@ -52,6 +56,10 @@ public class Main extends JavaPlugin {
         //Registers Commands
         this.getCommand("home").setExecutor(new HomeCommand());
         this.getCommand("sethome").setExecutor(new HomeCommand());
+        this.getCommand("coords").setExecutor(new CoordsCommand());
+
+        //Registers CommandTabCompleter
+        this.getCommand("coords").setTabCompleter(new CoordsTabCompleter());
 
         //Registers Listeners
         PluginManager pm = this.getServer().getPluginManager();

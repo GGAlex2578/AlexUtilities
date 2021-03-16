@@ -1,7 +1,19 @@
+#Sets the Prefix
 Prefix: "§6AlexUtilities §b>> §r"
+
+#Sets Universal Command Messages
 NoPlayer: "§cNur Spieler können diesen Command benutzen!"
 NoArgs: "§cBitte verwende keine zusätzlichen Argumente!"
 Success: "§aDer Command wurde erfolgreich ausgeführt!"
 Usage: "§cBitte benutze §b/"
+
+#Sets the Join and Quit Messages (%player% is the Player Name)
 JoinMessage: "§aDer Spieler §6%player% §ahat den Server betreten"
 QuitMessage: "§4Der Spieler §6%player% §4hat den Server verlassen"
+
+#Sets the Messages for the Coords Command (%coordsname% is the Coords Name)
+YourCoordinates: "§aDie Koordinaten von §6%coordsname% §alauten: "
+DeleteCoordinates: "§cDie Koordinaten von §6%coordsname% §cwurden gelöscht!"
+SaveCoordinates: "§aDie Koordinaten von §6%coordsname% §awurden gespeichert!"
+TeleportToCoordinates: "§aDu wurdest zu den Koordinaten von §6%coordsname% §ateleportiert!"
+CoordsNotExist: "§cDie Koordinaten existieren nicht!"
