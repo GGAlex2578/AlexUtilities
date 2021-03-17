@@ -26,7 +26,7 @@ public class CoordsCommand implements CommandExecutor {
 
             if (args.length >= 1) {
 
-                if (coordsyml.contains("Coordinates." + player.getName() + "." + args[0])) {
+                if (coordsyml.contains(player.getName() + "." + args[0])) {
 
                     if(args.length == 1 && command.getLabel().equalsIgnoreCase("coords")) {
 
@@ -67,7 +67,7 @@ public class CoordsCommand implements CommandExecutor {
     private void showCoordinates(Player player, String name, FileConfiguration config) {
 
         //Gets the Location with the specified Name from the Config File
-        Location loc = config.getLocation("Coordinates." + player.getName() + "." + name);
+        Location loc = config.getLocation(player.getName() + "." + name);
 
         //Prints the Location
         String message = Utils.yourCoords.replace("%coordsname%", name) + "§6X: " + Math.round(loc.getX()) + ", Y: " + Math.round(loc.getY()) + ", Z: " + Math.round(loc.getZ()) + ", World: " + loc.getWorld().getName();
@@ -81,7 +81,7 @@ public class CoordsCommand implements CommandExecutor {
         Location loc = player.getLocation();
 
         //Adds the Location with the specified Name to the Config
-        config.set("Coordinates." + player.getName() + "." + name, loc);
+        config.set(player.getName() + "." + name, loc);
 
         //Save Config
         try {
@@ -97,7 +97,7 @@ public class CoordsCommand implements CommandExecutor {
     private void deleteCoordinates(Player player, String name, FileConfiguration config, File configFile) {
 
         //Deletes the Location with the specified Name from the Config
-        config.set("Coordinates." + player.getName() + "." + name, null);
+        config.set(player.getName() + "." + name, null);
 
         //Save Config
         try {
@@ -113,7 +113,7 @@ public class CoordsCommand implements CommandExecutor {
     private void teleportToCoordinates(Player player, String name, FileConfiguration config) {
 
         //Gets the Location with the specified Name from the Config
-        Location loc = config.getLocation("Coordinates." + player.getName() + "." + name);
+        Location loc = config.getLocation(player.getName() + "." + name);
 
         //Teleports the Player
         player.teleportAsync(loc);

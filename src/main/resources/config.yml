@@ -2,9 +2,9 @@
 Prefix: "§6AlexUtilities §b>> §r"
 
 #Sets Universal Command Messages
-NoPlayer: "§cNur Spieler können diesen Command benutzen!"
+NoPlayer: "§cNur Spieler können diesen Befehl benutzen!"
 NoArgs: "§cBitte verwende keine zusätzlichen Argumente!"
-Success: "§aDer Command wurde erfolgreich ausgeführt!"
+Success: "§aDer Befehl wurde erfolgreich ausgeführt!"
 Usage: "§cBitte benutze §b/"
 
 #Sets the Join and Quit Messages (%player% is the Player Name)

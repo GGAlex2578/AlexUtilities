@@ -27,7 +27,7 @@ public class HomeCommand implements CommandExecutor {
             Player player = ((Player) sender).getPlayer();
 
             //Checks if the Command is /sethome and if the Player has a Home
-            if (args.length == 1 && cmd.getName().equalsIgnoreCase("sethome") && config.contains("Homes." + player.getName())) {
+            if (args.length == 1 && cmd.getName().equalsIgnoreCase("sethome") && config.contains(player.getName())) {
 
                 if (args[0].equalsIgnoreCase("confirm")) {
 
@@ -42,7 +42,7 @@ public class HomeCommand implements CommandExecutor {
                 //Checks if the Command is /sethome
             }else if (args.length <= 0 && cmd.getName().equalsIgnoreCase("sethome")) {
 
-                if (config.contains("Homes." + player.getName())) {
+                if (config.contains(player.getName())) {
 
                     player.sendMessage(Utils.usage + cmd.getName() + " confirm");
 
@@ -69,7 +69,7 @@ public class HomeCommand implements CommandExecutor {
 
             }else {
 
-                player.sendMessage(Utils.noArgs);
+                player.sendMessage(Utils.usage + cmd.getLabel() + " <confirm>");
 
             }
 
@@ -88,16 +88,16 @@ public class HomeCommand implements CommandExecutor {
     private void saveCoordinates(Player player, FileConfiguration config) {
 
         //Saves the Players Coordinates to homes.yml
-        config.set("Homes." + player.getName() + ".X", player.getLocation().getX());
-        config.set("Homes." + player.getName() + ".Y", player.getLocation().getY());
+        config.set(player.getName() + ".X", player.getLocation().getX());
+        config.set(player.getName() + ".Y", player.getLocation().getY());
         config.set("Homes." + player.getName() + ".Z", player.getLocation().getZ());
 
         //Saves the Players Rotation to homes.yml
-        config.set("Homes." + player.getName() + ".Yaw", player.getLocation().getYaw());
-        config.set("Homes." + player.getName() + ".Pitch", player.getLocation().getPitch());
+        config.set(player.getName() + ".Yaw", player.getLocation().getYaw());
+        config.set(player.getName() + ".Pitch", player.getLocation().getPitch());
 
         //Saves the Players World to homes.yml
-        config.set("Homes." + player.getName() + ".World", player.getLocation().getWorld().getName());
+        config.set(player.getName() + ".World", player.getLocation().getWorld().getName());
 
         //Save the Changes
         try {
@@ -115,16 +115,16 @@ public class HomeCommand implements CommandExecutor {
     private void teleportPlayer(Player player, FileConfiguration config) {
 
         //Retrieves the Players Coordinates from homes.yml
-        double x = config.getDouble("Homes." + player.getName() + ".X");
-        double y = config.getDouble("Homes." + player.getName() + ".Y");
-        double z = config.getDouble("Homes." + player.getName() + ".Z");
+        double x = config.getDouble(player.getName() + ".X");
+        double y = config.getDouble(player.getName() + ".Y");
+        double z = config.getDouble(player.getName() + ".Z");
 
         //Retrieves the Players Rotation from homes.yml
-        float yaw = (float) config.getDouble("Homes." + player.getName() + ".Yaw");
-        float pitch = (float) config.getDouble("Homes." + player.getName() + ".Pitch");
+        float yaw = (float) config.getDouble(player.getName() + ".Yaw");
+        float pitch = (float) config.getDouble(player.getName() + ".Pitch");
 
         //Retrieves the Players World from homes.yml
-        World world = Main.getPlugin().getServer().getWorld(config.getString("Homes." + player.getName() + ".World"));
+        World world = Main.getPlugin().getServer().getWorld(config.getString(player.getName() + ".World"));
 
         //Teleports the Player
         player.teleportAsync(new Location(world, x ,y ,z, yaw, pitch));
