@@ -1,7 +1,9 @@
 package com.github.cubealex.main;
 
+import com.github.cubealex.commands.BackpackCommand;
 import com.github.cubealex.commands.CoordsCommand;
 import com.github.cubealex.commands.HomeCommand;
+import com.github.cubealex.configs.BackpackYML;
 import com.github.cubealex.configs.CoordsYML;
 import com.github.cubealex.configs.HomesYML;
 import com.github.cubealex.listener.JoinListener;
@@ -33,6 +35,7 @@ public class Main extends JavaPlugin {
             //Load all Configs
             HomesYML.createConfig();
             CoordsYML.createConfig();
+            BackpackYML.createConfig();
 
         }catch (Exception e) {
 
@@ -57,6 +60,7 @@ public class Main extends JavaPlugin {
         this.getCommand("home").setExecutor(new HomeCommand());
         this.getCommand("sethome").setExecutor(new HomeCommand());
         this.getCommand("coords").setExecutor(new CoordsCommand());
+        this.getCommand("backpack").setExecutor(new BackpackCommand());
 
         //Registers CommandTabCompleter
         this.getCommand("coords").setTabCompleter(new CoordsTabCompleter());
@@ -65,6 +69,7 @@ public class Main extends JavaPlugin {
         PluginManager pm = this.getServer().getPluginManager();
 
         pm.registerEvents(new JoinListener(), this);
+        pm.registerEvents(new BackpackCommand(), this);
 
     }
 

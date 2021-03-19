@@ -11,5 +11,7 @@ commands:
     description: Setzt deinen Home Point
   coords:
     description: Speichert/Loescht Koordinaten und teleportiert dich auch zu ihnen
+  backpack:
+    description: Oeffnet einen Rucksack
 
 
