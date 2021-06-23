@@ -25,8 +25,8 @@ import java.util.List;
 public class BackpackCommand implements CommandExecutor, Listener {
 
     private FileConfiguration config = BackpackYML.getConfig();
-
     private List<ItemStack> contents = new ArrayList<>();
+    private Component title = Component.text("§6§lBackpack");
     
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -38,9 +38,9 @@ public class BackpackCommand implements CommandExecutor, Listener {
 
             if (args.length == 0 ) {
 
-                Inventory backpackInventory = Bukkit.getServer().createInventory(player, 9 * 4, Component.text("§6§lBackpack"));
+                Inventory backpackInventory = Bukkit.getServer().createInventory(player, 9 * 4, title);
 
-                //contents = config.getConfigurationSection(player.getName()).getValues();
+//                contents = config.getConfigurationSection(player.getName()).getIte
 
                 backpackInventory.setContents(contents.toArray(new ItemStack[contents.size()]));
                 
@@ -64,21 +64,17 @@ public class BackpackCommand implements CommandExecutor, Listener {
 
         Player player = (Player) event.getPlayer();
 
-        if (inventory.)
-        //Saves each individual ItemStack to backpack.yml
-        for (ItemStack is : inventory.getContents()) {
-
-            config.set(player.getName(), is);
-
+        if (player.getOpenInventory().title().equals(title)) {
+            //Saves each individual ItemStack to backpack.yml
+            for (ItemStack is : inventory.getContents())
+                config.set(player.getName(), is);
             //Save Config
             try {
                 config.save(BackpackYML.getConfigFile());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
 }
